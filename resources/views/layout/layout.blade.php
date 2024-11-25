@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>School Data Management Application</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="{{ config('app.url') }}resources/bootstrap/css/bootstrap.min.css">
-    @vite(['resources/css/app.css'])
 </head>
 
-<body>
+<body>    
+    @yield('navbar')
     @yield('content')
-    @vite(['resources/js/app.js'])
-    <script src="{{ config('app.url') }}resources/bootstrap/js/bootstrap.min.css"></script>
+    <script src="{{ config('app.url') }}resources/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>
