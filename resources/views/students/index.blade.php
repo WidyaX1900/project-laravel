@@ -4,7 +4,7 @@
     <div class="container mt-3">
         <h2>Student Data</h2>
         <div class="mt-4">
-            <a href="#" class="btn btn-primary py-2">Add New Student</a>
+            <a href="/student/create" class="btn btn-primary py-2">Add New Student</a>
             <table class="table mt-3">
                 <thead>
                     <tr>
