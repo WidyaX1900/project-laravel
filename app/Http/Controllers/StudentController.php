@@ -20,7 +20,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = $this->student->orderBy('id', 'desc')->get(['name', 'class']);
+        $students = $this->student->orderBy('id', 'desc')->get(['name', 'class', 'student_id']);
         return view('students.index', [
             'students' => $students
         ]);
@@ -68,9 +68,12 @@ class StudentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Student $student)
+    public function show(Student $student, $id)
     {
-        //
+        $student = $student->firstWhere('student_id', $id);
+        return view('students.show', [
+            'student' => $student
+        ]);
     }
 
     /**
