@@ -20,16 +20,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>AB168</td>
-                        <td>
-                            <a href="#" class="btn btn-sm btn-success me-2">View</a>
-                            <a href="#" class="btn btn-sm btn-warning me-2">Edit</a>
-                            <a href="#" class="btn btn-sm btn-danger">Delete</a>
-                        </td>
-                    </tr>
+                    @foreach ($students as $student)
+                        <tr>
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <td>{{ $student->name }}</td>
+                            <td>{{ $student->class }}</td>
+                            <td>
+                                <a href="#" class="btn btn-sm btn-success me-2">View</a>
+                                <a href="#" class="btn btn-sm btn-warning me-2">Edit</a>
+                                <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

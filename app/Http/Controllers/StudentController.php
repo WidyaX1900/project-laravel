@@ -13,7 +13,12 @@ class StudentController extends Controller
      */
     public function index()
     {
-        return view('students.index');
+        $students = new Student();
+        
+        $students = $students->orderBy('id', 'desc')->get(['name', 'class']);
+        return view('students.index', [
+            'students' => $students
+        ]);
     }
 
     /**
