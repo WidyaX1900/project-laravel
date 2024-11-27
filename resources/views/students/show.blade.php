@@ -10,7 +10,7 @@
                 <h3 class="mb-3">{{ $student->name }}</h3>
                 <ul class="p-0 ps-3">
                     <li class="mb-3">
-                        <strong>Student ID: </strong> {{ $student->student_id }}
+                        <strong>Student ID: </strong> {{ $student->id_number }}
                     </li>
                     <li class="mb-3">
                         <strong>Class: </strong> {{ $student->class }}
