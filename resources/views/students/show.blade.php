@@ -20,7 +20,7 @@
                     </li>
                 </ul>
                 <div class="mt-3 d-flex">
-                    <a href="#" class="d-block w-50 btn btn-warning me-4">Edit</a>
+                    <a href="/student/edit/{{ $student->student_id }}" class="d-block w-50 btn btn-warning me-4">Edit</a>
                     <button type="button" href="#" class="d-block w-50 btn btn-danger">Delete</button>
                 </div>
             </div>

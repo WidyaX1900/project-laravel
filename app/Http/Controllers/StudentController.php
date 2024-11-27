@@ -79,9 +79,12 @@ class StudentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Student $student)
+    public function edit(Student $student, $id)
     {
-        //
+        $student = $student->firstWhere('student_id', $id);
+        return view('students.edit', [
+            'student' => $student
+        ]);
     }
 
     /**
