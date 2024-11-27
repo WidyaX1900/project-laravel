@@ -8,14 +8,19 @@ use App\Http\Requests\UpdateStudentRequest;
 
 class StudentController extends Controller
 {
+    protected $student;
+    
+    public function __construct() 
+    {
+        $this->student = new Student();
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $students = new Student();
-        
-        $students = $students->orderBy('id', 'desc')->get(['name', 'class']);
+        $students = $this->student->orderBy('id', 'desc')->get(['name', 'class']);
         return view('students.index', [
             'students' => $students
         ]);
@@ -42,7 +47,7 @@ class StudentController extends Controller
         $major = $request->major;
         $photo = $this->_uploadPhoto($_FILES);
 
-        $student = Student::create([
+        $student = $this->student->create([
             'student_id'    =>  $student_id,
             'name'          =>  $name,
             'id_number'     =>  $id_number,
