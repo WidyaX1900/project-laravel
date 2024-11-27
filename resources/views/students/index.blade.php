@@ -2,6 +2,11 @@
 @extends('layout.navbar')
 @section('content')
     <div class="container mt-3">
+        @if (session()->has('message'))
+            <div id="flashAlert" class="alert alert-success" role="alert">
+                {{ session()->get('message') }}
+            </div>
+        @endif
         <h2>Student Data</h2>
         <div class="mt-4">
             <a href="/student/create" class="btn btn-primary py-2">Add New Student</a>

@@ -22,6 +22,7 @@ class StudentController extends Controller
     public function create()
     {
         return view('students.create');
+        
     }
 
     /**
@@ -29,7 +30,29 @@ class StudentController extends Controller
      */
     public function store(StoreStudentRequest $request)
     {
-        //
+        $student_id = rand();
+        $name = $request->name;
+        $id_number = $request->id_number;
+        $class = 'AB145';
+        $major = $request->major;
+        $photo = $this->_uploadPhoto($_FILES);
+
+        $student = Student::create([
+            'student_id'    =>  $student_id,
+            'name'          =>  $name,
+            'id_number'     =>  $id_number,
+            'class'         =>  $class,
+            'major'         =>  $major,
+            'photo'         =>  $photo
+        ]);
+
+        if($student) {
+            $request->session()->flash('message', 'Add student successful');
+            return redirect('/');
+        } else {
+            $request->session()->flash('message', 'Add student failed!');
+            return back();        
+        }
     }
 
     /**
@@ -62,5 +85,28 @@ class StudentController extends Controller
     public function destroy(Student $student)
     {
         //
+    }
+
+    private function _uploadPhoto($file)
+    {       
+        $newFileName = 'default.png';
+
+        $filename = $file['photo']['name'];
+        $tmp_name = $file['photo']['tmp_name'];
+        $error = $file['photo']['error'];
+
+        if($error !== 4) {
+            // Create a new filename
+            $extension = explode('.', $filename);
+            $extension = strtolower(end($extension));
+            $newFileName = uniqid();
+            $newFileName .= '.';
+            $newFileName .= $extension;
+
+            $filePath = base_path('resources/img/profile/') . $newFileName;
+            move_uploaded_file($tmp_name, $filePath);
+        }
+        
+        return $newFileName;
     }
 }
