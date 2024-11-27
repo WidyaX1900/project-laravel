@@ -113,7 +113,7 @@ class StudentController extends Controller
             $newFileName .= '.';
             $newFileName .= $extension;
 
-            $filePath = base_path('resources/img/profile/') . $newFileName;
+            $filePath = base_path('resources/img/profile/student/') . $newFileName;
             move_uploaded_file($tmp_name, $filePath);
         }
         
