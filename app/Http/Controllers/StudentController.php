@@ -90,9 +90,53 @@ class StudentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateStudentRequest $request, Student $student)
+    public function update(UpdateStudentRequest $request, Student $student, $id)
     {
-        //
+        $file = $request->file('photo');
+        $oldData = $student->firstWhere('student_id', $id);
+        $name = $request->name;
+        $id_number = $request->id_number;
+        $class = 'AB145';
+        $major = $request->major;
+
+        if($file) {
+            $oldFile = base_path('resources/img/profile/student/') . $oldData->photo;            
+            if($oldData->photo !== 'default.png' && file_exists($oldFile)) {
+                unlink($oldFile);    
+            }
+            $photo = $this->_uploadPhoto($_FILES);
+        } else {
+            $photo = $oldData->photo;    
+        }
+
+        $update = $student->where('student_id', $id)
+                ->update([
+                    'name'          =>  $name,
+                    'id_number'     =>  $id_number,
+                    'class'         =>  $class,
+                    'major'         =>  $major,
+                    'photo'         =>  $photo
+        ]);
+        
+        $isChanged = $this->_isChanged($oldData, $request, $file);
+        if (!$update) {
+            $request->session()->flash('message', [
+                'color' => 'danger',
+                'content' => 'Failed change student data!'
+            ]);
+            return back();
+        } else {
+            if(!$isChanged) {
+                $request->session()->flash('message', [
+                    'color' => 'primary',
+                    'content' => 'You\'ve made no changed'
+                ]);
+                return back();
+            } else {
+                $request->session()->flash('message', 'Update student successful');
+                return redirect('/');
+            }
+        }
     }
 
     /**
@@ -124,5 +168,19 @@ class StudentController extends Controller
         }
         
         return $newFileName;
+    }
+
+    private function _isChanged($oldData, $newData, $file)
+    {
+        if(
+            !$file &&
+            $oldData->name === $newData->name &&
+            $oldData->id_number === $newData->id_number &&
+            $oldData->major === $newData->major
+        ) {
+            return false;
+        } else {
+            return true;
+        }   
     }
 }

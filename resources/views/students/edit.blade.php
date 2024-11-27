@@ -3,13 +3,14 @@
     <div class="container mt-3">
         <a href="/">Back</a>
         @if (session()->has('message'))
-            <div id="flashAlert" class="alert alert-danger" role="alert">
-                {{ session()->get('message') }}
+            <div id="flashAlert" class="alert alert-{{ session()->get('message')['color'] }} my-3" role="alert">
+                {{ session()->get('message')['content'] }}
             </div>
         @endif
         <h2 class="mt-3 mb-4">Edit Student Data</h2>
-        <form action="/student/store" method="post" enctype="multipart/form-data">
+        <form action="/student/update/{{ $student->student_id }}" method="post" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <div class="row">
                 <div class="col-6">
                     <div class="mb-3">
@@ -22,7 +23,7 @@
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Student ID Number</label>
                         <input type="text" class="form-control" id="id_number" placeholder="Student ID Number"
-                            name="id_number" maxlength="8" value="{{ $student->student_id }}">
+                            name="id_number" maxlength="8" value="{{ $student->id_number }}">
                         @error('id_number')
                             <small class="error-warning text-danger">{{ $message }}</small>
                         @enderror
