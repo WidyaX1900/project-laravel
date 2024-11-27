@@ -14,7 +14,7 @@
                 <div class="col-6">
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Student Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="Student Name" name="name">
+                        <input type="text" class="form-control" id="name" placeholder="Student Name" name="name" value="{{ old('name') }}">
                         @error('name')
                             <small class="error-warning text-danger">{{ $message }}</small>
                         @enderror
@@ -22,7 +22,7 @@
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Student ID Number</label>
                         <input type="text" class="form-control" id="id_number" placeholder="Student ID Number"
-                            name="id_number" maxlength="8">
+                            name="id_number" maxlength="8" value="{{ old('id_number') }}">
                         @error('id_number')
                             <small class="error-warning text-danger">{{ $message }}</small>
                         @enderror
@@ -36,6 +36,9 @@
                             <option value="Technical Information">Technical Information</option>
                             <option value="Digital Business">Digital Business</option>
                         </select>
+                        @error('major')
+                            <small class="error-warning text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
                     <button class="btn btn-primary">Save data</button>
                 </div>

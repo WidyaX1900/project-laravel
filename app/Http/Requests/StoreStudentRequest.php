@@ -23,7 +23,8 @@ class StoreStudentRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'id_number' => 'required'
+            'id_number' => 'required',
+            'major' => 'required'
         ];
     }
 
@@ -31,7 +32,8 @@ class StoreStudentRequest extends FormRequest
     {
         return [
             'name.required' => 'The name cannot be empty',
-            'id_number.required' => 'The ID number cannot be empty'
+            'id_number.required' => 'The ID number cannot be empty',
+            'major.required' => 'Select one of the Majors'
         ];
     }
 }
