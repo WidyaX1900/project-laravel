@@ -12,7 +12,7 @@
                         <a class="nav-link active" aria-current="page" href="/">Students</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Teacher</a>
+                        <a class="nav-link" href="/teacher">Teacher</a>
                     </li>
                 </ul>
             </div>
