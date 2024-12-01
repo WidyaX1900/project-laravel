@@ -9,7 +9,7 @@
         @endif
         <h2>Teacher Data</h2>
         <div class="mt-4">
-            <a href="/student/create" class="btn btn-primary py-2">Add New Teacher</a>
+            <a href="/teacher/create" class="btn btn-primary py-2">Add New Teacher</a>
             <table class="table mt-3">
                 <thead>
                     <tr>
