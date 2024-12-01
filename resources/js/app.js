@@ -58,3 +58,10 @@ function imageHandler(file) {
     }        
 }
 
+$(".delete-button").on("click", function(event) {
+    const student_id = $(this).data("student_id");
+    $("#deleteForm").attr("action", "/student/destroy/" + student_id);       
+    $("#deleteStudentModal").modal("show");
+        
+});
+

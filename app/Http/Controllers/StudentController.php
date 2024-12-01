@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Student;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
+use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
@@ -142,9 +143,22 @@ class StudentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Student $student)
+    public function destroy(Student $student, Request $request, $id)
     {
-        //
+        $studentData = $student->firstWhere('student_id', $id);
+        if($studentData && $studentData->photo !== 'default.png') {
+            $filePath = base_path('resources/img/profile/student/') . $studentData->photo;
+            unlink($filePath);
+        }
+        
+        $delete = $studentData->delete();
+        if($delete) {
+            $request->session()->flash('message', 'Delete student successful');
+        } else {
+            $request->session()->flash('message', 'Delete student failed!');
+        }        
+        return redirect('/');        
+
     }
 
     private function _uploadPhoto($file)

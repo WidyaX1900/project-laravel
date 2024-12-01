@@ -21,9 +21,27 @@
                 </ul>
                 <div class="mt-3 d-flex">
                     <a href="/student/edit/{{ $student->student_id }}" class="d-block w-50 btn btn-warning me-4">Edit</a>
-                    <button type="button" href="#" class="d-block w-50 btn btn-danger">Delete</button>
+                    <button type="button" class="d-block w-50 btn btn-danger delete-button" data-student_id="{{ $student->student_id }}">Delete</button>
                 </div>
             </div>
         </div>
     </div>
 @endsection
+
+<div class="modal fade" id="deleteStudentModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+        <form id="deleteForm" method="post">
+            @csrf
+            @method('DELETE')
+            <div class="modal-body text-center">
+                <h5>Do you want to delete this student?</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Yes, delete</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>

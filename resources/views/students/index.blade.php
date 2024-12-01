@@ -28,7 +28,7 @@
                             <td>
                                 <a href="/student/show/{{ $student->student_id }}" class="btn btn-sm btn-success me-2">View</a>
                                 <a href="/student/edit/{{ $student->student_id }}" class="btn btn-sm btn-warning me-2">Edit</a>
-                                <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                                <button type="button" class="btn btn-sm btn-danger delete-button" data-student_id="{{ $student->student_id }}">Delete</button>
                             </td>
                         </tr>
                     @endforeach
@@ -37,3 +37,22 @@
         </div>
     </div>
 @endsection
+
+<div class="modal fade" id="deleteStudentModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+        <form id="deleteForm" method="post">
+            @csrf
+            @method('DELETE')
+            <div class="modal-body text-center">
+                <h5>Do you want to delete this student?</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Yes, delete</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>
+
