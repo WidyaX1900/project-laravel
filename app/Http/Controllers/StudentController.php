@@ -58,7 +58,11 @@ class StudentController extends Controller
         ]);
 
         if($student) {
-            $request->session()->flash('message', 'Add student successful');
+            $flash = [
+                'color' => 'success',
+                'content' => 'Add student successful'
+            ];
+            $request->session()->flash('message', $flash);
             return redirect('/');
         } else {
             $request->session()->flash('message', 'Add student failed!');
@@ -128,13 +132,18 @@ class StudentController extends Controller
             return back();
         } else {
             if(!$isChanged) {
-                $request->session()->flash('message', [
+                $flash = [
                     'color' => 'primary',
                     'content' => 'You\'ve made no changed'
-                ]);
+                ];
+                $request->session()->flash('message', $flash);
                 return back();
             } else {
-                $request->session()->flash('message', 'Update student successful');
+                $flash = [
+                    'color' => 'success',
+                    'content' => 'Update student successful'
+                ]; 
+                $request->session()->flash('message', $flash);
                 return redirect('/');
             }
         }
@@ -153,9 +162,17 @@ class StudentController extends Controller
         
         $delete = $studentData->delete();
         if($delete) {
-            $request->session()->flash('message', 'Delete student successful');
+            $flash = [
+                'color' => 'success',
+                'content' => 'Delete student successful'
+            ];
+            $request->session()->flash('message', $flash);
         } else {
-            $request->session()->flash('message', 'Delete student failed!');
+            $flash = [
+                'color' => 'danger',
+                'content' => 'Delete student failed!'
+            ];
+            $request->session()->flash('message', $flash);
         }        
         return redirect('/');        
 

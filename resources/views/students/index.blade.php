@@ -3,8 +3,8 @@
 @section('content')
     <div class="container mt-3">
         @if (session()->has('message'))
-            <div id="flashAlert" class="alert alert-success" role="alert">
-                {{ session()->get('message') }}
+            <div id="flashAlert" class="alert alert-{{ session()->get('message')['color'] }}" role="alert">
+                {{ session()->get('message')['content'] }}
             </div>
         @endif
         <h2>Student Data</h2>
