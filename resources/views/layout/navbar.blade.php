@@ -14,9 +14,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Teacher</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Classes</a>
-                    </li>
                 </ul>
             </div>
         </div>
