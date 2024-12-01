@@ -8,7 +8,7 @@
             </div>
         @endif
         <h2 class="mt-3 mb-4">Add Teacher Data</h2>
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="/teacher/store" method="post" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-6">

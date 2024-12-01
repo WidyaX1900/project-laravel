@@ -16,3 +16,4 @@ Route::delete('/student/destroy/{id}', [StudentController::class, 'destroy']);
 // Teacher routes
 Route::get('/teacher', [TeacherController::class, 'index']);
 Route::get('/teacher/create', [TeacherController::class, 'create']);
+Route::post('/teacher/store', [TeacherController::class, 'store']);
